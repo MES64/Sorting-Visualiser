@@ -39,7 +39,7 @@ function generate() {
     console.log(window.array)
 }
 
-function sort() {
+async function sort() {
     // Bubble Sort
     const len = window.array.length;
 
@@ -47,6 +47,7 @@ function sort() {
         for (let j=0; j<len-i-1; j++) {
             if (window.array[j] > window.array[j+1]) {
                 swap(j, j+1)
+                await wait()
             }
         }
     }
@@ -65,8 +66,23 @@ function swap(i, j) {
     barJ.setAttribute('style', `height: ${window.array[j]}px;`)
 }
 
+function wait() {
+    // 'async func' allows for code to run asynchronously; normally it's synchronous
+    // 'await promise' waits for the promise to finish executing
+    // Promises have an argument of a function, which itself has args resolve, and sometime reject
+    // The Promise below contains a function which runs the setTimeout function
+    // setTimeout has args: function to run after set time, and that time in ms
+    // This setTimeout function runs a function returning resolve (so nothing really) after x000ms (x seconds)
+
+    // The effect is that the function in Promise simply waits for x seconds
+    // This Promise is returned by wait(), meaning 'await wait()' waits for x seconds before moving on
+    // This wait only affects the execution in the async function
+    return new Promise(resolve => setTimeout(resolve, 1000))
+}
+
 // ToDo: 
-// - Generate pause after each swap
-// - Code the sorting algorithm; start with bubble sort
+// - Arrow functions instead
+// - Is global array needed? Could pass array into functions
 // - Code the changing of bar colors to indicate what is 
 //   happening
+// - Set pause to slider value
