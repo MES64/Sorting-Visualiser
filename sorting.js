@@ -1,20 +1,27 @@
+var array;
+
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)
 } else {
     ready()
 }
 
-var array;
-
 function ready() {
+    generate(null)
+
     document.getElementsByClassName('btn-generate')[0].addEventListener('click', generate)
 
     document.getElementsByClassName('btn-sort')[0].addEventListener('click', sort)
-
-    document.addEventListener("keypress", swap)
 }
 
-function generate() {
+function generate(event) {
+    // Return if disabled
+    if (event != null) {
+        if (event.target.classList.contains('btn-disabled')) {
+            return
+        }
+    }
+
     const numOfBars = document.getElementsByClassName('num-bars')[0].value
 
     const cont = document.getElementsByClassName('container')[0]
@@ -22,48 +29,104 @@ function generate() {
     const arr = document.createElement('div')
     arr.classList.add('array')
 
-    window.array = [];
+    array = [];
     for (let i=0; i<numOfBars; i++) {
         var barHeight = Math.floor(Math.random()*400 + 1)
         var bar = document.createElement('span')
         bar.setAttribute('id', `${i}`)
         bar.setAttribute('style', `height: ${barHeight}px;`)
-        bar.setAttribute('title', `${barHeight}`)
+        //bar.setAttribute('title', `${barHeight}`)
         bar.classList.add('bar')
 
         arr.append(bar)
-        window.array.push(barHeight)
+        array.push(barHeight)
     }
     cont.append(arr)
 
-    console.log(window.array)
+    enableSort()
+
+    //console.log(array)
 }
 
-async function sort() {
+async function sort(event) {
+    // Return if disabled
+    if (event.target.classList.contains('btn-disabled')) {
+        return
+    }
+
+    disableButtons()
+
     // Bubble Sort
-    const len = window.array.length;
+    const len = array.length;
 
     for (let i=0; i<len-1; i++) {
-        for (let j=0; j<len-i-1; j++) {
-            if (window.array[j] > window.array[j+1]) {
+        setColor(0, 'blue')
+        for (var j=0; j<len-i-1; j++) {
+            setColor(j+1, 'blue')
+            await wait()
+            if (array[j] > array[j+1]) {
                 swap(j, j+1)
                 await wait()
             }
+            setColor(j, 'red')
         }
+        setColor(j, 'green')
+        await wait()
+    }
+    setColor(0, 'green')
+
+    enableButtons()  // All but the sort button
+}
+
+function disableButtons() {
+    const btns = document.getElementsByClassName('btn')
+
+    for (let i=0; i<btns.length; i++) {
+        var btn = btns[i]
+        btn.classList.add('btn-disabled')
+    }
+}
+
+function enableButtons() {
+    const btns = document.getElementsByClassName('btn')
+
+    for (let i=0; i<btns.length; i++) {
+        var btn = btns[i]
+        if (!btn.classList.contains('btn-sort')){
+            btn.classList.remove('btn-disabled')
+        }
+    }
+}
+
+function enableSort() {
+    const sortBtn = document.getElementsByClassName('btn-sort')[0]
+
+    sortBtn.classList.remove('btn-disabled')
+}
+
+function setColor(i, barColor) {
+    const bar = document.getElementById(`${i}`)
+    bar.classList.remove('blueBar', 'greenBar')
+
+    if (barColor == 'blue') {
+        bar.classList.add('blueBar')
+    }
+    else if (barColor == 'green') {
+        bar.classList.add('greenBar')
     }
 }
 
 function swap(i, j) {
     // Swap in array
-    const temp = window.array[i]
-    window.array[i] = window.array[j]
-    window.array[j] = temp
+    const temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
 
     // Update display
     const barI = document.getElementById(`${i}`)
     const barJ = document.getElementById(`${j}`)
-    barI.setAttribute('style', `height: ${window.array[i]}px;`)
-    barJ.setAttribute('style', `height: ${window.array[j]}px;`)
+    barI.setAttribute('style', `height: ${array[i]}px;`)
+    barJ.setAttribute('style', `height: ${array[j]}px;`)
 }
 
 function wait() {
@@ -77,12 +140,17 @@ function wait() {
     // The effect is that the function in Promise simply waits for x seconds
     // This Promise is returned by wait(), meaning 'await wait()' waits for x seconds before moving on
     // This wait only affects the execution in the async function
-    return new Promise(resolve => setTimeout(resolve, 1000))
+
+    const pause = 1000 / document.getElementsByClassName("speed")[0].value
+
+    return new Promise(resolve => setTimeout(resolve, pause))
 }
 
 // ToDo: 
-// - Arrow functions instead
-// - Is global array needed? Could pass array into functions
-// - Code the changing of bar colors to indicate what is 
-//   happening
-// - Set pause to slider value
+// - Set limits to number of bars input
+// - Special Inputs, such as reverse order, sorted, all values the same. 
+// - Text to explain
+// - Different Sorts; insertion, selection, merge, quick, shell; + insertion at end / when sub-arrays too short
+// - Save arrays to try on different sorts?
+// - Can calculate the number of array accesses per sort after generation?
+// - Nice: background-color: rgb(0, 0, 22);

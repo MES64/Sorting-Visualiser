@@ -1,15 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Ubuntu&display=swap');
+
 * {
     box-sizing: border-box;
-    color: #777;
+    color: #666;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 html, body {
     margin: 0;
     padding: 0;
+    background-color: #CCC;
 }
 
 .main-header {
     text-align: center;
+    font-family: 'Concert One', cursive;
+    font-size: 2.5em;
+    color: #555;
 }
 
 .container {
@@ -21,6 +28,8 @@ html, body {
 .generate {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     margin-bottom: 40px;
 }
 
@@ -30,7 +39,7 @@ html, body {
     padding: .67em;
     margin: 0 .67em;
     cursor: pointer;
-    color: white;
+    color: #DDD;
     border: none;
     border-radius: .3em;
     font-weight: bold;
@@ -38,6 +47,7 @@ html, body {
 
 .btn-generate {
     background-color: darkblue;
+    margin: 0 50px 0 0;
 }
 
 .btn-generate:hover {
@@ -46,10 +56,52 @@ html, body {
 
 .btn-sort {
     background-color: olive;
+    margin: 0 0 0 50px;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 .btn-sort:hover {
     background-color: rgb(83, 83, 1);
+}
+
+.btn-disabled {
+    background-color: #AAA;
+}
+
+.btn-disabled:hover {
+    background-color: #AAA;
+}
+
+.btn-disabled:active {
+    background-color: red
+}
+
+.input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.speed {
+    margin: 0 25px 0 10px;
+}
+
+.num-bars {
+    height: 34px;
+    width: 50px;
+    border-radius: 5px;
+    border: 1px solid #56CCF2;
+    background-color: #eee;
+    color: #333;
+    padding: 0;
+    margin: 0 0 0 10px;
+    text-align: center;
+}
+
+.txt {
+    font-size: 1em;
+    font-weight: bold;
 }
 
 .array {
@@ -57,10 +109,20 @@ html, body {
     align-items: flex-end;
     justify-content: center;
     height: 400px;
+    margin-bottom: 25px;
 }
 
 .bar {
     width: 100%;
     margin: 0 2px;
     background-color: red;
+    border-radius: .3em;
+}
+
+.blueBar {
+    background-color: blue;
+}
+
+.greenBar {
+    background-color: green;
 }
