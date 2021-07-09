@@ -4,6 +4,8 @@ Sorting visualiser for bubble sort with speed and array size adjustments; HTML, 
 
 [Video Demo (click here)](https://www.youtube.com/watch?v=Dv8TWTYSgrY)
 
+![Sorting-Visualiser](https://user-images.githubusercontent.com/15747137/125118878-391a6e00-e0e8-11eb-8879-fba2f69baed1.png)
+
 Created a demonstration of the bubble sort algorithm, with colour-coded bars to visualise the sort. I included settings for the number of bars, and I made it so that the speed can be adjusted mid-sort. 
 
 There is a "Generate" button to generate a new array to sort, a slider to adjust the speed which even adjusts the speed mid-sort, an input for the number of bars (or array size), and a "Sort" button to start the sort. 
