@@ -14,7 +14,7 @@ The bars are initialised to red to represent them being unsorted, they turn blue
 
 ## Installation
 
-For now, you must pull the code into Android Studio and run on an emulator to give it a go yourself. 
+For now, you must pull the code onto your computer and click on the html file to give it a go yourself. 
 
 ## Implementing Sorting Visualiser
 
