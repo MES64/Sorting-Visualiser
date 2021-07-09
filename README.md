@@ -28,7 +28,7 @@ The inputs (buttons, speed, and number of bars) are all included in a div at the
 
 #### Generate Random Array
 
-When the generate button is clicked, a div representing the previous array is deleted and a new div representing the array is created. Numbers are randomly generated one-by-one, after which spans are created representing the bars. The height of each bar is set to the randomly generated number. The span is then added to the array div, and the number is pushed onto the array variable. This is repeated according to the number of bars set by the input field. 
+When the generate button is clicked, a div representing the previous array is deleted and a new div representing the array is created. Numbers are randomly generated one-by-one, after which spans are created representing the bars. The height of each bar is set to the randomly generated number, and are also given an id equal to its index in the array for look-up. The span is then added to the array div, and the random number is pushed onto the array variable. This is repeated according to the number of bars set by the input field. 
 
 #### Sort Function
 
