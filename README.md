@@ -2,6 +2,8 @@
 
 Sorting visualiser for bubble sort with speed and array size adjustments; HTML, CSS, JavaScript
 
+[Try It Here](https://mes64.github.io/Sorting-Visualiser/)
+
 [Video Demo (click here)](https://www.youtube.com/watch?v=Dv8TWTYSgrY)
 
 ![Sorting-Visualiser](https://user-images.githubusercontent.com/15747137/125118878-391a6e00-e0e8-11eb-8879-fba2f69baed1.png)
